@@ -3,6 +3,8 @@ hyper/
 
 apikey
 ELEVEN_LABS_API_URL
+config.py
+elevenlabsapi.py
 # Logs
 logs
 *.log
