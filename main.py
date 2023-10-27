@@ -6,9 +6,10 @@ import io
 import requests
 from pydub import AudioSegment
 from pydub.playback import play
+from datetime import datetime  # Added to get the current time and date
 
 # Custom directory for saving text files
-output_text_directory = "C:/Users/dom/outputs2"  # Text directory
+output_text_directory = "C:/Tic/gpt_assistant/output_chat"  # Text directory
 
 # Eleven Labs API and Voice ID - "TmQmj1rrc2pDH2JOOfTi"
 ELEVEN_LABS_API_URL = "https://api.elevenlabs.io/v1/text-to-speech/TmQmj1rrc2pDH2JOOfTi"
@@ -33,15 +34,18 @@ def text_to_speech(text):
     play(audio)  # Play the audio
     
 def save_response_to_file(prompt, response):
+    current_time = datetime.now().strftime("%H:%M:%S")
+    current_date = datetime.now().strftime("%Y-%m-%d")
+
     with open(
         os.path.join(output_text_directory, "output.txt"),
         "a",
         encoding="utf-8",
     ) as text_file:
-        text_file.write(f"Prompt - {prompt}\nResponse - {response}\n\n")
+        text_file.write(f"Prompt ({current_time}) ({current_date}) - {prompt}\nResponse - {response}\n\n")
 
-print("Alfred: Fuck You Master Wayne")
-text_to_speech("Fuck You Master Wayne")
+print("Alfred: Welcome back, Master Wayne")
+# text_to_speech("Welcome back, Master Wayne")
 user_input = input("Master Wayne: ")
 response = get_chatgpt_response(user_input)
 
