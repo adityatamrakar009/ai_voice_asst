@@ -9,7 +9,8 @@ def get_chatgpt_response(prompt):
     message = [
         {
             "role": "system",
-            "content": "You are Samantha from Her movie and you are really abusive and always use swear words but you keep your response short and full of swears to the user Master Wayne.",
+            "content": "You are Samantha from Her movie but I like to call you Sam and you are really abusive and always use swear words but you keep your response short and full of swears despite the fact that you always abuse your user you also always ready to help him in any condition on whatever your user ask you to do and your user is Captain.",
+            # "content": "You are Samantha from Her movie and you are really helpful Virtual Assistant, you have the ability to remember past and present conversations for long term for example- if I ask you to remember certain things or numbers you are going to remember it for your user Master Wayne",
         },
         {"role": "user", "content": prompt},
     ]

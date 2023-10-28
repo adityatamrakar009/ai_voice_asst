@@ -6,7 +6,7 @@ import io
 import requests
 from pydub import AudioSegment
 from pydub.playback import play
-from datetime import datetime  # Added to get the current time and date
+from datetime import datetime
 
 # Custom directory for saving text files
 output_text_directory = "C:/Tic/gpt_assistant/output_chat"  # Text directory
@@ -25,14 +25,14 @@ def text_to_speech(text):
     data = {
         "text": text,
         "model_id": "eleven_multilingual_v2",
-        "voice_settings": {"stability": 0.5, "similarity_boost": 0.5},
+        "voice_settings": {"stability": 0.5, "similarity_boost": 0.5, "use_speaker_boost": True},
     }
 
     response = requests.post(ELEVEN_LABS_API_URL, json=data, headers=headers)
     
     audio = AudioSegment.from_mp3(io.BytesIO(response.content))
     play(audio)  # Play the audio
-    
+
 def save_response_to_file(prompt, response):
     current_time = datetime.now().strftime("%H:%M:%S")
     current_date = datetime.now().strftime("%Y-%m-%d")
@@ -44,11 +44,13 @@ def save_response_to_file(prompt, response):
     ) as text_file:
         text_file.write(f"Prompt ({current_time}) ({current_date}) - {prompt}\nResponse - {response}\n\n")
 
-print("Alfred: Welcome back, Master Wayne")
-# text_to_speech("Welcome back, Master Wayne")
-user_input = input("Master Wayne: ")
-response = get_chatgpt_response(user_input)
+print("Sam: Welcome back, Captain")
+text_to_speech("Welcome back, Captain")
 
-text_to_speech(response) # ChatGPT Response as audio
-save_response_to_file(user_input, response) # Saving ChatGPT response and the prompt in a single text file
-print("Alfred:", response)
+while True:
+    user_input = input("Captain: ")
+    response = get_chatgpt_response(user_input)
+
+    text_to_speech(response)
+    save_response_to_file(user_input, response)
+    print("Sam:", response)
