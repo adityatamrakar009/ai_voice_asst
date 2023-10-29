@@ -6,6 +6,7 @@ apikey
 ELEVEN_LABS_API_URL
 config.py
 elevenlabsapi.py
+username=FrankCastlSenior
 # Logs
 logs
 *.log
