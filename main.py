@@ -1,7 +1,6 @@
 import os
-import openai
 from openaiapi import get_chatgpt_response
-from elevenlabsapi import apikey
+from elevenlabsapi import ttsapikey
 import io
 import requests
 from pydub import AudioSegment
@@ -16,7 +15,7 @@ output_text_directory = "C:/Tic/main_gpt_assistant/output_chat"
 
 # Eleven Labs API and Voice ID - "TmQmj1rrc2pDH2JOOfTi"
 ELEVEN_LABS_API_URL = "https://api.elevenlabs.io/v1/text-to-speech/TmQmj1rrc2pDH2JOOfTi"
-ELEVEN_LABS_API_KEY = apikey
+ELEVEN_LABS_API_KEY = ttsapikey
 
 
 def text_to_speech(text):
@@ -36,6 +35,7 @@ def text_to_speech(text):
         },
     }
 
+    response = get_chatgpt_response(text)
     response = requests.post(ELEVEN_LABS_API_URL, json=data, headers=headers)
 
     audio = AudioSegment.from_mp3(io.BytesIO(response.content))
@@ -68,6 +68,12 @@ print("Sam: Welcome back, Captain")
 while True:
     user_input = input("Captain: ")
     user_input_lower = user_input.lower()
+
+    if "bye" in user_input_lower:
+        print("Sam: Goodbye, Captain.")
+        break
+
+    response = get_chatgpt_response(user_input)
 
     # Check for specific commands and perform actions
     if "play music" in user_input_lower:
@@ -149,5 +155,6 @@ while True:
             time.sleep(2)
             open_website(site[1])
 
+    text_to_speech(response)
     save_response_to_file(user_input, response)
     print("Sam:", response)
