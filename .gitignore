@@ -1,6 +1,7 @@
 .DS_Store
 hyper/
-
+__pycache__
+.vscode
 apikey
 ELEVEN_LABS_API_URL
 config.py
