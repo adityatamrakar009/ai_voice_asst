@@ -1,4 +1,5 @@
 import os
+import openai
 from openaiapi import get_chatgpt_response
 from elevenlabsapi import ttsapikey
 import io
@@ -35,7 +36,6 @@ def text_to_speech(text):
         },
     }
 
-    response = get_chatgpt_response(text)
     response = requests.post(ELEVEN_LABS_API_URL, json=data, headers=headers)
 
     audio = AudioSegment.from_mp3(io.BytesIO(response.content))
@@ -61,15 +61,15 @@ def open_website(url):
     webbrowser.open(url)
 
 
-text_to_speech("Welcome back, Captain")
-print("Sam: Welcome back, Captain")
+# text_to_speech("Welcome back, Captain")
+print("Valley: Welcome back, Captain")
 
 
 while True:
     user_input = input("Captain: ")
     user_input_lower = user_input.lower()
 
-    if "bye" in user_input_lower:
+    if ("Valley sleep tight") in user_input_lower:
         print("Sam: Goodbye, Captain.")
         break
 
@@ -84,16 +84,16 @@ while True:
         time.sleep(time_to_wait)
         os.system(f"start {musicPath}")
 
-    elif "current time and date" in user_input_lower:
+    elif "current time and date" in user_input_lower or "time and date" in user_input_lower:
         current_time = datetime.now().strftime("%I:%M %p")
         current_date = datetime.now().strftime("%Y-%m-%d")
         response = f"The current time is {current_time} and the date is {current_date}."
 
-    elif "current time" in user_input_lower:
+    elif "current time" in user_input_lower or "time" in user_input_lower:
         current_time = datetime.now().strftime("%I:%M %p")
         response = f"The current time is {current_time}."
 
-    elif "current date" in user_input_lower:
+    elif "current date" in user_input_lower or "date" in user_input_lower:
         current_date = datetime.now().strftime("%Y-%m-%d")
         response = f"The current date is {current_date}."
 
@@ -147,6 +147,7 @@ while True:
         ["hulu", "https://www.hulu.com"],
         ["yc", "https://ycombinator.com"],
         ["tiktok", "https://www.tiktok.com"],
+        ["elevenlabs", "https://elevenlabs.io"],
     ]
     for site in sites:
         if f"open {site[0]}".lower() in user_input_lower:
@@ -157,4 +158,4 @@ while True:
 
     text_to_speech(response)
     save_response_to_file(user_input, response)
-    print("Sam:", response)
+    print("Valley:", response)
