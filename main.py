@@ -84,7 +84,10 @@ while True:
         time.sleep(time_to_wait)
         os.system(f"start {musicPath}")
 
-    elif "current time and date" in user_input_lower or "time and date" in user_input_lower:
+    elif (
+        "current time and date" in user_input_lower
+        or "time and date" in user_input_lower
+    ):
         current_time = datetime.now().strftime("%I:%M %p")
         current_date = datetime.now().strftime("%Y-%m-%d")
         response = f"The current time is {current_time} and the date is {current_date}."
