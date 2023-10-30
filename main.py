@@ -18,7 +18,6 @@ output_text_directory = "C:/Tic/main_gpt_assistant/output_chat"
 ELEVEN_LABS_API_URL = "https://api.elevenlabs.io/v1/text-to-speech/TmQmj1rrc2pDH2JOOfTi"
 ELEVEN_LABS_API_KEY = ttsapikey
 
-
 def text_to_speech(text):
     headers = {
         "Accept": "audio/mpeg",
@@ -56,31 +55,33 @@ def save_response_to_file(prompt, response):
             f"Prompt ({current_time}) ({current_date}) - {prompt}\nResponse - {response}\n\n"
         )
 
-
 def open_website(url):
     webbrowser.open(url)
 
-
 # text_to_speech("Welcome back, Captain")
 print("Valley: Welcome back, Captain")
-
 
 while True:
     user_input = input("Captain: ")
     user_input_lower = user_input.lower()
 
-    if ("Valley sleep tight") in user_input_lower:
+    if "valley sleep" in user_input_lower:
+        text_to_speech("Goodbye, Captain.")
+        time.sleep(1)
         print("Sam: Goodbye, Captain.")
         break
 
     response = get_chatgpt_response(user_input)
 
+    play_audio = True
+
     # Check for specific commands and perform actions
     if "play music" in user_input_lower:
         musicPath = "C:/Users/dom/Music/Hymn_for_the_weekend.m4a"
-        response = "Sure, playing Music..."
-        time_to_wait = 2
+        response = "Playing music, sir."
         text_to_speech(response)
+        time_to_wait = 1
+        play_audio = False
         time.sleep(time_to_wait)
         os.system(f"start {musicPath}")
 
@@ -93,7 +94,7 @@ while True:
         response = f"The current time is {current_time} and the date is {current_date}."
 
     elif "current time" in user_input_lower or "time" in user_input_lower:
-        current_time = datetime.now().strftime("%I:%M %p")
+        current_time = datetime.now().strftime("%I:%M:%S %p")
         response = f"The current time is {current_time}."
 
     elif "current date" in user_input_lower or "date" in user_input_lower:
@@ -151,14 +152,19 @@ while True:
         ["yc", "https://ycombinator.com"],
         ["tiktok", "https://www.tiktok.com"],
         ["elevenlabs", "https://elevenlabs.io"],
+        ["openai", "https://openai.com"],
+        ["gpt", "https://chat.openai.com"]
     ]
     for site in sites:
         if f"open {site[0]}".lower() in user_input_lower:
             response = f"Opening {site[0]} sir..."
             text_to_speech(response)
-            time.sleep(2)
+            time.sleep(1)
+            play_audio = False
             open_website(site[1])
 
-    text_to_speech(response)
+    if play_audio:
+       text_to_speech(response)
+
     save_response_to_file(user_input, response)
     print("Valley:", response)
