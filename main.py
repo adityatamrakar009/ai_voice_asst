@@ -14,8 +14,8 @@ import threading
 # Custom directory for saving text files
 output_text_directory = "C:/Tic/main_gpt_assistant/output_chat"
 
-# Eleven Labs API and Voice ID - "TmQmj1rrc2pDH2JOOfTi"
-ELEVEN_LABS_API_URL = "https://api.elevenlabs.io/v1/text-to-speech/TmQmj1rrc2pDH2JOOfTi"
+# Eleven Labs API and Voice ID - "TmQmj1rrc2pDH2JOOfTi - Valley, NLhhnq7yGcjLD58e2Y83 - Neal"
+ELEVEN_LABS_API_URL = "https://api.elevenlabs.io/v1/text-to-speech/NLhhnq7yGcjLD58e2Y83"
 ELEVEN_LABS_API_KEY = ttsapikey
 
 def text_to_speech(text):
@@ -80,7 +80,7 @@ while True:
         musicPath = "C:/Users/dom/Music/Hymn_for_the_weekend.m4a"
         response = "Playing music, sir."
         text_to_speech(response)
-        time_to_wait = 1
+        time_to_wait = 2
         play_audio = False
         time.sleep(time_to_wait)
         os.system(f"start {musicPath}")
@@ -153,13 +153,17 @@ while True:
         ["tiktok", "https://www.tiktok.com"],
         ["elevenlabs", "https://elevenlabs.io"],
         ["openai", "https://openai.com"],
-        ["gpt", "https://chat.openai.com"]
+        ["gpt", "https://chat.openai.com"],
+        ["gmail", "https://mail.google.com/mail/u/0/#inbox"],
+        ["email", "https://mail.google.com/mail/u/0/#inbox"],
+        ["mail", "https://mail.google.com/mail/u/0/#inbox"],
+        ["inbox", "https://mail.google.com/mail/u/0/#inbox"]
     ]
     for site in sites:
         if f"open {site[0]}".lower() in user_input_lower:
             response = f"Opening {site[0]} sir..."
             text_to_speech(response)
-            time.sleep(1)
+            time.sleep(2)
             play_audio = False
             open_website(site[1])
 

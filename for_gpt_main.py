@@ -18,6 +18,7 @@ output_text_directory = "C:/Tic/main_gpt_assistant/output_chat"
 ELEVEN_LABS_API_URL = "https://api.elevenlabs.io/v1/text-to-speech/NLhhnq7yGcjLD58e2Y83"
 ELEVEN_LABS_API_KEY = ttsapikey
 
+
 def text_to_speech(text):
     headers = {
         "Accept": "audio/mpeg",
@@ -55,8 +56,10 @@ def save_response_to_file(prompt, response):
             f"Prompt ({current_time}) ({current_date}) - {prompt}\nResponse - {response}\n\n"
         )
 
+
 def open_website(url):
     webbrowser.open(url)
+
 
 # text_to_speech("Welcome back, Captain")
 print("Valley: Welcome back, Captain")
@@ -105,60 +108,8 @@ while True:
         ["youtube", "https://www.youtube.com"],
         ["wikipedia", "https://www.wikipedia.com"],
         ["google", "https://www.google.com"],
-        ["product hunt", "https://www.producthunt.com"],
-        ["github", "https://www.github.com"],
-        ["twitter", "https://www.twitter.com"],
-        ["reddit", "https://www.reddit.com"],
-        ["facebook", "https://www.facebook.com"],
-        ["instagram", "https://www.instagram.com"],
-        ["netflix", "https://www.netflix.com"],
-        ["amazon", "https://www.amazon.com"],
-        ["flipkart", "https://www.flipkart.com"],
-        ["spotify", "https://www.spotify.com"],
-        ["medium", "https://www.medium.com"],
-        ["quora", "https://www.quora.com"],
-        ["stack overflow", "https://www.stackoverflow.com"],
-        ["gmail", "https://www.gmail.com"],
-        ["linkedin", "https://www.linkedin.com"],
-        ["whatsapp", "https://www.whatsapp.com"],
-        ["telegram", "https://www.telegram.com"],
-        ["pinterest", "https://www.pinterest.com"],
-        ["snapchat", "https://www.snapchat.com"],
-        ["tumblr", "https://www.tumblr.com"],
-        ["twitch", "https://www.twitch.com"],
-        ["bing", "https://www.bing.com"],
-        ["yahoo", "https://www.yahoo.com"],
-        ["duckduckgo", "https://www.duckduckgo.com"],
-        ["baidu", "https://www.baidu.com"],
-        ["yandex", "https://www.yandex.com"],
-        ["ask", "https://www.ask.com"],
-        ["aol", "https://www.aol.com"],
-        ["ebay", "https://www.ebay.com"],
-        ["walmart", "https://www.walmart.com"],
-        ["craigslist", "https://www.craigslist.com"],
-        ["imdb", "https://www.imdb.com"],
-        ["bing", "https://www.bing.com"],
-        ["yelp", "https://www.yelp.com"],
-        ["paypal", "https://www.paypal.com"],
-        ["apple", "https://www.apple.com"],
-        ["microsoft", "https://www.microsoft.com"],
-        ["yahoo", "https://www.yahoo.com"],
-        ["amazon", "https://www.amazon.com"],
-        ["netflix", "https://www.netflix.com"],
-        ["walmart", "https://www.walmart.com"],
-        ["target", "https://www.target.com"],
-        ["best buy", "https://www.bestbuy.com"],
-        ["hulu", "https://www.hulu.com"],
-        ["yc", "https://ycombinator.com"],
-        ["tiktok", "https://www.tiktok.com"],
-        ["elevenlabs", "https://elevenlabs.io"],
-        ["openai", "https://openai.com"],
-        ["gpt", "https://chat.openai.com"],
-        ["gmail", "https://mail.google.com/mail/u/0/#inbox"],
-        ["email", "https://mail.google.com/mail/u/0/#inbox"],
-        ["mail", "https://mail.google.com/mail/u/0/#inbox"],
-        ["inbox", "https://mail.google.com/mail/u/0/#inbox"]
     ]
+
     for site in sites:
         if f"open {site[0]}".lower() in user_input_lower:
             response = f"Opening {site[0]} sir..."
@@ -168,7 +119,7 @@ while True:
             open_website(site[1])
 
     if play_audio:
-       text_to_speech(response)
+        text_to_speech(response)
 
     save_response_to_file(user_input, response)
     print("Valley:", response)
