@@ -13,8 +13,13 @@ config.py
 elevenlabsapi.py
 ELEVEN_LABS_API_URL
 apikey
+shit.html
 output.txt
-
+speech-to-text-key.json
+pyttsx3voice.py
+package.json
+package-lock.json
+.env
 # Logs
 logs
 *.log

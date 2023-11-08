@@ -67,8 +67,7 @@ while True:
 
     if "valley sleep" in user_input_lower:
         text_to_speech("Goodbye, Captain.")
-        time.sleep(1)
-        print("Sam: Goodbye, Captain.")
+        print("Valley: Goodbye, Captain.")
         break
 
     response = get_chatgpt_response(user_input)
@@ -80,7 +79,7 @@ while True:
         musicPath = "C:/Users/dom/Music/Hymn_for_the_weekend.m4a"
         response = "Playing music, sir."
         text_to_speech(response)
-        time_to_wait = 2
+        time_to_wait = .5
         play_audio = False
         time.sleep(time_to_wait)
         os.system(f"start {musicPath}")
@@ -163,7 +162,7 @@ while True:
         if f"open {site[0]}".lower() in user_input_lower:
             response = f"Opening {site[0]} sir..."
             text_to_speech(response)
-            time.sleep(2)
+            time.sleep(1)
             play_audio = False
             open_website(site[1])
 

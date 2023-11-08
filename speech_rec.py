@@ -1,7 +1,7 @@
 import os
 import openai
 from openaiapi import get_chatgpt_response
-from elevenlabsapi import apikey
+from elevenlabsapi import ttsapikey
 import io
 import requests
 from pydub import AudioSegment
@@ -14,7 +14,7 @@ output_text_directory = "C:/Tic/gpt_assistant/output_chat"  # Text directory
 
 # Eleven Labs API and Voice ID - "TmQmj1rrc2pDH2JOOfTi"
 ELEVEN_LABS_API_URL = "https://api.elevenlabs.io/v1/text-to-speech/TmQmj1rrc2pDH2JOOfTi"
-ELEVEN_LABS_API_KEY = apikey
+ELEVEN_LABS_API_KEY = ttsapikey
 
 def text_to_speech(text):
     headers = {

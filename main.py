@@ -18,6 +18,7 @@ output_text_directory = "C:/Tic/main_gpt_assistant/output_chat"
 ELEVEN_LABS_API_URL = "https://api.elevenlabs.io/v1/text-to-speech/NLhhnq7yGcjLD58e2Y83"
 ELEVEN_LABS_API_KEY = ttsapikey
 
+
 def text_to_speech(text):
     headers = {
         "Accept": "audio/mpeg",
@@ -55,8 +56,10 @@ def save_response_to_file(prompt, response):
             f"Prompt ({current_time}) ({current_date}) - {prompt}\nResponse - {response}\n\n"
         )
 
+
 def open_website(url):
     webbrowser.open(url)
+
 
 # text_to_speech("Welcome back, Captain")
 print("Valley: Welcome back, Captain")
@@ -159,6 +162,7 @@ while True:
         ["mail", "https://mail.google.com/mail/u/0/#inbox"],
         ["inbox", "https://mail.google.com/mail/u/0/#inbox"]
     ]
+
     for site in sites:
         if f"open {site[0]}".lower() in user_input_lower:
             response = f"Opening {site[0]} sir..."
@@ -168,7 +172,7 @@ while True:
             open_website(site[1])
 
     if play_audio:
-       text_to_speech(response)
+        text_to_speech(response)
 
     save_response_to_file(user_input, response)
     print("Valley:", response)
